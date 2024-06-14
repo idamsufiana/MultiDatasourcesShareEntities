@@ -17,7 +17,7 @@ public class TransferDataController {
     @Autowired
     private DownloadService downloadService;
 
-    @PostMapping("/Postgres")
+    @GetMapping("/Postgres")
     public ResponseEntity<?> download(){
         ResponseInfo responseData = new ResponseInfo();
         responseData = downloadService.getAllData();
