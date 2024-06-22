@@ -5,70 +5,68 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.api.multidatasource.models.PpsrOneTimeSubscription;
-import com.api.multidatasource.models.PpsrProductRolloverRulesetMapping;
-import com.api.multidatasource.models.PpsrProductRulesetMapping;
-import com.api.multidatasource.models.PpsrRenewal;
 import com.api.multidatasource.models.ResponseInfo;
-import com.api.multidatasource.repository.local.PpsrOneTimeSubscriptionRepository;
-import com.api.multidatasource.repository.local.PpsrProductRolloverRulesetMappingRepository;
-import com.api.multidatasource.repository.local.PpsrProductRulesetMappingRepository;
-import com.api.multidatasource.repository.local.PpsrRenewalRepository;
-import com.api.multidatasource.repository.postgres.PpsrOneTimeSubscriptionPostRepository;
-import com.api.multidatasource.repository.postgres.PpsrProductRolloverRulesetMappingPostRepository;
-import com.api.multidatasource.repository.postgres.PpsrProductRulesetMappingPostRepository;
-import com.api.multidatasource.repository.postgres.PpsrRenewalPostRepository;
+import com.api.multidatasource.models.TableA;
+import com.api.multidatasource.models.TableB;
+import com.api.multidatasource.models.TableC;
+import com.api.multidatasource.models.TableD;
+import com.api.multidatasource.repository.local.TableARepository;
+import com.api.multidatasource.repository.local.TableBRepository;
+import com.api.multidatasource.repository.local.TableCRepository;
+import com.api.multidatasource.repository.local.TableDRepository;
+import com.api.multidatasource.repository.postgres.TableAPostRepository;
+import com.api.multidatasource.repository.postgres.TableBPostRepository;
+import com.api.multidatasource.repository.postgres.TableCPostRepository;
+import com.api.multidatasource.repository.postgres.TableDPostRepository;
 
-import jakarta.transaction.Transactional;
 
 @Service
 public class DownloadService {
 
     @Autowired
-    private PpsrProductRolloverRulesetMappingPostRepository ppsrProductRolloverRulesetMappingPostRepository;
+    private TableDPostRepository tableDPostRepository;
 
     @Autowired
-    private PpsrOneTimeSubscriptionPostRepository ppsrOneTimeSubscriptionPostRepository;
+    private TableAPostRepository tableAPostRepository;
 
     @Autowired
-    private PpsrRenewalPostRepository ppsrRenewalPostRepository;
+    private TableBPostRepository tableBPostRepository;
 
     @Autowired
-    private PpsrProductRulesetMappingPostRepository ppsrProductRulesetMappingPostRepository;
+    private TableCPostRepository tableCPostRepository;
 
     @Autowired
-    private PpsrProductRolloverRulesetMappingRepository ppsrProductRolloverRulesetMappingRepository;
+    private TableDRepository tableDRepository;
 
     @Autowired
-    private PpsrOneTimeSubscriptionRepository ppsrOneTimeSubscriptionRepository;
+    private TableARepository tableARepository;
 
     @Autowired
-    private PpsrRenewalRepository ppsrRenewalRepository;
+    private TableBRepository tableBRepository;
 
     @Autowired
-    private PpsrProductRulesetMappingRepository ppsrProductRulesetMappingRepository;
+    private TableCRepository tableCRepository;
 
     public ResponseInfo getAllData(){
         ResponseInfo responseData = new ResponseInfo();
 
         try {
 
-            ppsrOneTimeSubscriptionRepository.deleteAll();
-            List<PpsrOneTimeSubscription> ppsrOneTimeSubscription = ppsrOneTimeSubscriptionPostRepository.findAll();
-            ppsrOneTimeSubscriptionRepository.saveAll(ppsrOneTimeSubscription);
+            tableARepository.deleteAll();
+            List<TableA> tableAs = tableAPostRepository.findAll();
+            tableARepository.saveAll(tableAs);
 
-            ppsrRenewalRepository.deleteAll();
-            List<PpsrRenewal> ppsrRenewals = ppsrRenewalPostRepository.findAll();
-            ppsrRenewalRepository.saveAll(ppsrRenewals);
+            tableBRepository.deleteAll();
+            List<TableB> tableBs = tableBPostRepository.findAll();
+            tableBRepository.saveAll(tableBs);
 
-            ppsrProductRulesetMappingRepository.deleteAll();
-            List<PpsrProductRulesetMapping> ppsrProductRulesetMapping = ppsrProductRulesetMappingPostRepository.findAll();
-            ppsrProductRulesetMappingRepository.saveAll(ppsrProductRulesetMapping);
+            tableCRepository.deleteAll();
+            List<TableC> tableCs = tableCPostRepository.findAll();
+            tableCRepository.saveAll(tableCs);
 
-            ppsrProductRolloverRulesetMappingRepository.deleteAll();
-            List<PpsrProductRolloverRulesetMapping> ppsrProductRolloverRulesetMapping = ppsrProductRolloverRulesetMappingPostRepository.findAll();
-            ppsrProductRolloverRulesetMappingRepository.saveAll(ppsrProductRolloverRulesetMapping);
+            tableDRepository.deleteAll();
+            List<TableD> tableDs = tableDPostRepository.findAll();
+            tableDRepository.saveAll(tableDs);
 
             responseData.setSuccess();
             
